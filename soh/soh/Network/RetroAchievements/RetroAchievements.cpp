@@ -3,6 +3,7 @@
 #include "RetroAchievements.h"
 #include "RAHttp.h"
 #include "RAMemory.h"
+#include "RAPopup.h"
 
 #include <string>
 #include <imgui.h>
@@ -123,11 +124,13 @@ void RC_CCONV LogMessage(const char* message, const rc_client_t*) {
 void RC_CCONV HandleEvent(const rc_client_event_t* event, rc_client_t* client) {
     switch (event->type) {
         case RC_CLIENT_EVENT_ACHIEVEMENT_TRIGGERED:
-            Notification::Emit({
-                .prefix = rc_client_get_spectator_mode_enabled(client) ? "Achievement unlocked (test, not sent):"
-                                                                       : "Achievement unlocked:",
-                .message = event->achievement->title,
-                .suffix = std::to_string(event->achievement->points) + " pts",
+            RAPopup::Show({
+                .headline = rc_client_get_spectator_mode_enabled(client) ? "Achievement Unlocked (test, not sent)"
+                                                                         : "Achievement Unlocked",
+                .title = event->achievement->title,
+                .description = event->achievement->description ? event->achievement->description : "",
+                .points = event->achievement->points,
+                .badgeUrl = event->achievement->badge_url ? event->achievement->badge_url : "",
             });
             SPDLOG_INFO("[RetroAchievements] Unlocked {} \"{}\"", event->achievement->id, event->achievement->title);
             break;
@@ -146,7 +149,12 @@ void RC_CCONV HandleEvent(const rc_client_event_t* event, rc_client_t* client) {
             break;
         case RC_CLIENT_EVENT_GAME_COMPLETED: {
             const rc_client_game_t* game = rc_client_get_game_info(client);
-            Notification::Emit({ .prefix = "Set complete:", .message = game->title });
+            RAPopup::Show({
+                .headline = "Set Complete",
+                .title = game->title,
+                .description = "Every achievement in the set is unlocked",
+                .badgeUrl = game->badge_url ? game->badge_url : "",
+            });
             break;
         }
         case RC_CLIENT_EVENT_SERVER_ERROR:
@@ -180,14 +188,52 @@ void RC_CCONV OnGameLoaded(int result, const char* error, rc_client_t* client, v
     sStatus = std::string("Playing ") + game->title;
     SPDLOG_INFO("[RetroAchievements] Loaded game {} \"{}\": {}/{} unlocked", game->id, game->title,
                 summary.num_unlocked_achievements, summary.num_core_achievements);
-    Notification::Emit({
-        .prefix = "RetroAchievements:",
-        .message = game->title,
-        .suffix = std::to_string(summary.num_unlocked_achievements) + "/" +
-                  std::to_string(summary.num_core_achievements) + " unlocked" +
-                  (rc_client_get_encore_mode_enabled(client) ? ", replay mode" : "") +
-                  (rc_client_get_spectator_mode_enabled(client) ? ", TEST MODE" : ""),
+    RAPopup::Show({
+        .headline = "RetroAchievements",
+        .title = game->title,
+        .description = std::to_string(summary.num_unlocked_achievements) + "/" +
+                       std::to_string(summary.num_core_achievements) + " unlocked - softcore" +
+                       (rc_client_get_encore_mode_enabled(client) ? ", replay mode" : "") +
+                       (rc_client_get_spectator_mode_enabled(client) ? ", TEST MODE" : ""),
+        .badgeUrl = game->badge_url ? game->badge_url : "",
+        .gold = false,
     });
+
+    // Download every badge now so unlock popups show their image immediately
+    rc_client_achievement_list_t* list = rc_client_create_achievement_list(
+        client, RC_CLIENT_ACHIEVEMENT_CATEGORY_CORE, RC_CLIENT_ACHIEVEMENT_LIST_GROUPING_LOCK_STATE);
+    for (uint32_t b = 0; b < list->num_buckets; b++) {
+        for (uint32_t i = 0; i < list->buckets[b].num_achievements; i++) {
+            const char* url = list->buckets[b].achievements[i]->badge_url;
+            if (url != nullptr) {
+                RAPopup::PrefetchBadge(url);
+            }
+        }
+    }
+    rc_client_destroy_achievement_list(list);
+}
+
+// Shows a popup for a random achievement in the set, to preview the style
+void PreviewPopup() {
+    rc_client_achievement_list_t* list = rc_client_create_achievement_list(
+        sClient, RC_CLIENT_ACHIEVEMENT_CATEGORY_CORE, RC_CLIENT_ACHIEVEMENT_LIST_GROUPING_LOCK_STATE);
+    std::vector<const rc_client_achievement_t*> all;
+    for (uint32_t b = 0; b < list->num_buckets; b++) {
+        for (uint32_t i = 0; i < list->buckets[b].num_achievements; i++) {
+            all.push_back(list->buckets[b].achievements[i]);
+        }
+    }
+    if (!all.empty()) {
+        const rc_client_achievement_t* a = all[rand() % all.size()];
+        RAPopup::Show({
+            .headline = "Achievement Unlocked (preview)",
+            .title = a->title,
+            .description = a->description ? a->description : "",
+            .points = a->points,
+            .badgeUrl = a->badge_url ? a->badge_url : "",
+        });
+    }
+    rc_client_destroy_achievement_list(list);
 }
 
 void LoadGame() {
@@ -292,6 +338,7 @@ void OnGameFrame() {
 }
 
 void Init() {
+    RAPopup::Init();
     GameInteractor::Instance->RegisterGameHook<GameInteractor::OnGameFrameUpdate>(OnGameFrame);
 
     std::string username = CVarGetString(CVAR_RA("Username"), "");
@@ -391,6 +438,18 @@ void DrawMenu() {
     if (rc_client_get_spectator_mode_enabled(sClient)) {
         ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.2f, 1.0f), "TEST MODE: unlocks are not sent to RetroAchievements");
     }
+
+    bool sound = CVarGetInteger(CVAR_RA("Sound"), 1) != 0;
+    if (ImGui::Checkbox("Unlock sound##RA", &sound)) {
+        CVarSetInteger(CVAR_RA("Sound"), sound ? 1 : 0);
+        SaveCVars();
+    }
+    ImGui::SameLine();
+    ImGui::BeginDisabled(!rc_client_is_game_loaded(sClient));
+    if (ImGui::Button("Preview popup##RA")) {
+        PreviewPopup();
+    }
+    ImGui::EndDisabled();
 
     if (rc_client_is_game_loaded(sClient)) {
         rc_client_user_game_summary_t summary{};
