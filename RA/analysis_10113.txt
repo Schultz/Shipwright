@@ -1,0 +1,177 @@
+== The Legend of Zelda: Ocarina of Time: 113 achievements, 13 leaderboards ==
+
+Achievements by hardest region touched:
+   76  Save + PlayState/input (fixed globals)
+   10  Other: Other,PlayState,SaveContext
+    8  Touches dynamic actor heap
+    8  Player actor (fixed address)
+    6  SaveContext only
+    3  Other: Other,SaveContext
+    2  Other: Other,PlayState
+
+Distinct addresses per region:
+   56  SaveContext
+   20  Actor heap (dynamic)
+    8  PlayState
+    5  Other
+    3  Player actor
+    0  pointer-relative offsets
+
+Non-SaveContext addresses:
+  0x000000 0xH  x13  Other                  (no note)
+  0x0efcd2 0x   x14  Other                  (16-bit) Dialogue Id
+  0x11bf22 0x   x4   Other                  Timer per frame
+  0x11bf22 0xH  x7   Other                  Timer per frame
+  0x11bf26 0xH  x1   Other                  (no note)
+  0x124e54 0x   x8   Other                  (8bit) Music ID
+  0x124e54 0xH  x51  Other                  (8bit) Music ID
+  0x1c853c 0x   x1   PlayState              Current Scene - Timer [32bit]
+  0x1c8546 0x   x5   PlayState              Scene ID [16bit]
+  0x1c8546 0x   x5   PlayState              Scene ID [16bit]
+  0x1c8546 0xH  x93  PlayState              Scene ID [16bit]
+  0x1ca0c4 0xH  x3   PlayState              Lens of Truth - Effect active
+  0x1ca1c8 0xP  x1   PlayState              (8 bit) boulders trio at goron city (temp stored) bit1,2,3 (
+  0x1ca1c9 0xN  x1   PlayState              (no note)
+  0x1ca1c9 0xO  x1   PlayState              (no note)
+  0x1d8872 0x   x17  PlayState              Dialog ID 16 Bits
+  0x1d8872 0x   x87  PlayState              Dialog ID 16 Bits
+  0x1da2fe 0xT  x1   PlayState              (8 bit) amount of bombs remain - Bombchu Bowling Alley
+  0x1da2ff 0xT  x4   PlayState              (no note)
+  0x1daa5a 0x   x6   Player actor           (no note)
+  0x1dab77 0xH  x21  Player actor           Currently Used Item
+  0x1dabdc 0x   x16  Player actor           Link's Animation [16bit]
+  0x1e3324 0xH  x4   Actor heap (dynamic)   (8 bit) Shooting Game at Market
+  0x1e3326 0xH  x4   Actor heap (dynamic)   (8 bit) 1=when game start 2=when game finish at shooting gal
+  0x1e71fc 0xH  x1   Actor heap (dynamic)   (8 bit) Goron Shadow HP
+  0x1e8416 0x   x2   Actor heap (dynamic)   (16 bit) Gohma position
+  0x1ecbaa 0xH  x2   Actor heap (dynamic)   (8 bit) timer for fire breath of king dodongo
+  0x1f00e4 0xH  x3   Actor heap (dynamic)   Current Winner
+  0x1f1c40 0xH  x1   Actor heap (dynamic)   (8 bit) 1=event about to activate 4=event activated
+  0x1f1c46 0xH  x1   Actor heap (dynamic)   (8 bit) remain hit until angry chickens [8 hits]
+  0x1f2420 0xH  x1   Actor heap (dynamic)   (8 bit) 1=event about to activate 4=event activated
+  0x1f2426 0xH  x1   Actor heap (dynamic)   (8 bit) remain hit until angry chickens [8 hits]
+  0x1f2c00 0xH  x1   Actor heap (dynamic)   (8 bit) 1=event about to activate 4=event activated
+  0x1f2c06 0xH  x1   Actor heap (dynamic)   (8 bit) remain hit until angry chickens [8 hits]
+  0x1f33e0 0xH  x1   Actor heap (dynamic)   (8 bit) 1=event about to activate 4=event activated
+  0x1f33e6 0xH  x1   Actor heap (dynamic)   (8 bit) remain hit until angry chickens [8 hits]
+  0x1f3bc0 0xH  x1   Actor heap (dynamic)   (8 bit) 1=event about to activate 4=event activated
+  0x1f3bc6 0xH  x1   Actor heap (dynamic)   (8 bit) remain hit until angry chickens [8 hits]
+  0x1f43a0 0xH  x1   Actor heap (dynamic)   (8 bit) 1=event about to activate 4=event activated
+  0x1f43a6 0xH  x1   Actor heap (dynamic)   (8 bit) remain hit until angry chickens [8 hits]
+  0x1f4b80 0xH  x1   Actor heap (dynamic)   (8 bit) 1=event about to activate 4=event activated
+  0x1f4b86 0xH  x1   Actor heap (dynamic)   (8 bit) remain hit until angry chickens [8 hits]
+
+Per-achievement:
+  101000001 Warning: Outdated Emulator (please | save only
+   48057 Spider Net                         | Actor heap (dynamic), Other, PlayState
+   48074 Entrusted Mission                  | Other
+   48108 Rise and Shine!!                   | PlayState
+   48109 A Royal Autograph                  | PlayState
+   48249 Dance Into the Fire                | PlayState
+   48277 Bombalicious                       | Actor heap (dynamic), Other, PlayState
+   48278 Soul Brothers                      | PlayState
+   48417 Rolling Thunder                    | Other, PlayState
+   48418 Wedding Band                       | PlayState
+   48512 Damsel in Distress                 | Other, PlayState
+   48516 Hero of Time                       | PlayState
+   48582 The Great Escape                   | PlayState
+   48818 Drunken Master                     | Actor heap (dynamic), Other, PlayState, Player actor
+   48819 Awakening                          | PlayState
+   48914 Hot Hot Hot                        | Other, PlayState
+   48915 Eternal Brothers                   | PlayState
+   48254 Bring Me to the Bottom of the Ocea | PlayState
+   48941 A Breath of Fresh Air              | save only
+   48946 Day of the Tentacles               | Other, PlayState, Player actor
+   48947 Bride to Be                        | PlayState
+   49018 Invisible One                      | Other, PlayState, Player actor
+   49019 The Shadow of the Hylians          | PlayState
+   48896 Gerudo's Fan Club                  | PlayState
+   49188 A Horrible Face                    | PlayState
+   49189 Infamous Silver Gauntlets          | PlayState
+   49261 Twins of Evil                      | Other, PlayState, Player actor
+   49263 Brainwashed                        | PlayState
+   49286 To the Rescue                      | PlayState
+   49290 King of Thieves                    | Other, PlayState, Player actor
+   49291 My Last Breath                     | Other, PlayState, Player actor
+   48275 Home Sweet Home                    | PlayState
+   48256 President Link-Oln                 | save only
+   48106 Sniper Fury                        | PlayState
+   48107 Who Let the Dogs Out               | PlayState
+   48160 Money Solves Everything            | PlayState
+   48161 Troublemaker                       | PlayState
+   48113 Super Cucco Catching               | PlayState
+   48162 You Make Me Feel So Good           | PlayState
+   48224 Bullseye!!                         | PlayState
+   48225 You Can Be a Star                  | PlayState
+   48255 Bunches of Twigs                   | PlayState
+   48226 Shield Raider                      | PlayState
+   48241 Catch Me If You Can                | PlayState
+   48242 Cuccos' Revenge                    | Actor heap (dynamic), PlayState
+   48336 Roll Roll and Away                 | PlayState
+   48279 Walking on a Tightrope             | PlayState
+   48341 You Spin Me Round                  | PlayState
+   48342 Bombchu Bowling Star               | PlayState
+   48343 Mouse Ka-Boom                      | PlayState
+   48344 On Fire                            | PlayState
+   48345 Stocking Nuts                      | PlayState
+   48346 Magic Beans                        | PlayState
+   48347 The Way the World Learns to Dive   | PlayState
+   48416 Take Me Away                       | PlayState
+   48423 A Pretty Face                      | PlayState
+   48513 Last Breath                        | PlayState
+   48514 Happy Mask Salesman                | PlayState
+   48515 Lifestyle and Stones               | Other, PlayState
+   48583 Hook Me Away                       | PlayState
+   48584 Ghost Chaser                       | PlayState
+   48585 Jump Over                          | PlayState
+   48820 Pierre the Wanderer                | PlayState
+   48821 Poe Collector                      | PlayState
+   48822 Drunkard                           | save only
+   48823 Sniper Elite                       | PlayState
+   48912 Heat Resistant Tunic               | save only
+   48942 Kiss That Frog                     | PlayState
+   48949 The Flaming Arrow                  | PlayState
+   48950 The Fabulous Froggish Tenors       | PlayState
+   48951 Seeing Is Believing                | PlayState
+   48974 Open the Chest and...Surprise!     | PlayState
+   48975 Biggoron's Sword                   | PlayState
+   49040 Ultimate Horse Master              | PlayState
+   49185 Graduate of Gerudo's Training Grou | PlayState
+   49186 Nayru's Love                       | PlayState
+   49187 Musician                           | Other
+   49287 Plenty of Hearts                   | save only
+   49288 Wind Runner                        | PlayState
+   49289 The Rock                           | PlayState
+   48243 A Man's Best Friend                | PlayState
+   48244 Secrets Detector                   | PlayState
+   48245 A Woman's Best Friend              | PlayState
+   48246 Bombchu                            | PlayState
+   48247 My Broken Heart                    | PlayState
+   48248 Family Reunion                     | PlayState
+   48348 Fishing Lessons                    | PlayState
+   48943 Expert Angler                      | PlayState
+   48944 Mischievous Hero                   | PlayState
+   48945 Accomplished Angler                | PlayState
+   49294 Cartographer                       | PlayState
+   48918 Dangerously Delicious              | Actor heap (dynamic), Other, PlayState
+   48916 Race Against the Clock             | Other, PlayState
+   48917 Dodgeball                          | Other, PlayState
+   48913 Whac-A-Mole                        | Other, PlayState, Player actor
+   48948 Tentacles of the Deep              | Other, PlayState, Player actor
+   49020 Invisible Stalker                  | Other, PlayState
+   49262 Double Trouble                     | Other, PlayState, Player actor
+   49292 Dark Lord                          | Other, PlayState
+   49293 Blind Explorer                     | PlayState
+       0 [LB] Odd Mushroom                  | PlayState
+       0 [LB] Eyeball Frog                  | PlayState
+       0 [LB] Worlds Finest Eye Drops       | PlayState
+       0 [LB] Epona Race                    | Actor heap (dynamic), Other, PlayState
+       0 [LB] Epona Parkour                 | Other, PlayState
+       0 [LB] Dampes Race                   | Other, PlayState
+       0 [LB] Running Man Challenge         | Other, PlayState
+       0 [LB] Slingshot Sniper              | Actor heap (dynamic), PlayState
+       0 [LB] Bow Sniper                    | Actor heap (dynamic), PlayState
+       0 [LB] Bombchu Bowling               | PlayState
+       0 [LB] Super Cuccos Catching         | Other
+       0 [LB] Diving Mini Game              | Other, PlayState
+       0 [LB] Horse Master                  | save only

@@ -1,0 +1,101 @@
+== The Legend of Zelda: Ocarina of Time [Subset - Glitch Showcase]: 44 achievements, 0 leaderboards ==
+
+Achievements by hardest region touched:
+   25  Save + PlayState/input (fixed globals)
+    7  Player actor (fixed address)
+    4  Touches dynamic actor heap
+    4  Other: Other,PlayState,SaveContext
+    2  Other: Input (padmgr),Other,PlayState,SaveContext
+    2  SaveContext only
+
+Distinct addresses per region:
+   35  SaveContext
+   11  PlayState
+    5  Player actor
+    4  Other
+    4  Actor heap (dynamic)
+    1  Input (padmgr)
+    0  pointer-relative offsets
+
+Non-SaveContext addresses:
+  0x000000 0xN  x1   Other                  (no note)
+  0x0efcd2 0x   x2   Other                  (16-bit) Dialogue Id
+  0x11d735 0xS  x3   Input (padmgr)         Controller 1 - Input [mirror]
+  0x124e54 0xH  x10  Other                  (8bit) Music ID
+  0x1b0228 0xH  x1   Other                  (no note)
+  0x1c8546 0x   x1   PlayState              Scene ID [16bit]
+  0x1c8546 0xH  x83  PlayState              Scene ID [16bit]
+  0x1ca0c4 0xH  x1   PlayState              Lens of Truth - Effect active
+  0x1ca1c8 0xP  x3   PlayState              (8 bit) boulders trio at goron city (temp stored) bit1,2,3 (
+  0x1ca1c8 0xQ  x1   PlayState              (8 bit) boulders trio at goron city (temp stored) bit1,2,3 (
+  0x1ca1c8 0xR  x1   PlayState              (8 bit) boulders trio at goron city (temp stored) bit1,2,3 (
+  0x1ca1c8 0xS  x1   PlayState              (8 bit) boulders trio at goron city (temp stored) bit1,2,3 (
+  0x1ca1c8 0xT  x1   PlayState              (8 bit) boulders trio at goron city (temp stored) bit1,2,3 (
+  0x1ca1ca 0xO  x1   PlayState              (no note)
+  0x1ca1ca 0xT  x1   PlayState              (no note)
+  0x1ca1cb 0xO  x2   PlayState              (no note)
+  0x1ca1cb 0xT  x3   PlayState              (no note)
+  0x1ca1cb 0xU  x1   PlayState              (no note)
+  0x1ca1cf 0xH  x2   PlayState              (no note)
+  0x1ca1d9 0xO  x2   PlayState              (no note)
+  0x1ca1e4 0xN  x2   PlayState              (no note)
+  0x1ca1e4 0xQ  x2   PlayState              (no note)
+  0x1ca1e5 0xM  x2   PlayState              (no note)
+  0x1ca1e7 0xH  x1   PlayState              (no note)
+  0x1ca1e7 0xS  x1   PlayState              (no note)
+  0x1d8872 0x   x1   PlayState              Dialog ID 16 Bits
+  0x1daa54 0xX  x8   Player actor           Link's X-Coordinate [32bit, float]
+  0x1daa58 0xX  x9   Player actor           Link's Y-Coordinate [32bit, float]
+  0x1daa5c 0xX  x5   Player actor           Link's Z-Coordinate [32bit, float]
+  0x1dab4c 0x   x3   Player actor           Pointer - Item currently in Hands [32bit]
+  0x1dab71 0xH  x5   Player actor           (no note)
+  0x1ecb76 0xH  x3   Actor heap (dynamic)   (8 bit) King Dodongo HP
+  0x1ee65c 0xH  x3   Actor heap (dynamic)   (no note)
+  0x1ee7dc 0xH  x1   Actor heap (dynamic)   (no note)
+  0x1eea5c 0xH  x2   Actor heap (dynamic)   (no note)
+
+Per-achievement:
+  101000001 Warning: Outdated Emulator (please | save only
+  153084 Please Take Good Care of It        | PlayState
+  153079 Deku Tree - B Button Challenge     | Input (padmgr), Other, PlayState
+  153080 Dodongo's Cavern - B Button Challe | Actor heap (dynamic), Input (padmgr), Other, PlayState
+  153081 Jabu Jabu - B Button Challenge     | Input (padmgr), Other, PlayState
+  153063 Aren't You a Bit Big to Be Here?   | Other, PlayState
+  153082 Item Swap                          | Other, PlayState
+  153047 Forest Escape                      | Other, PlayState
+  153053 Mweep                              | PlayState
+  153054 Open up!                           | PlayState
+  153060 Team Left                          | PlayState
+  153064 Time Paradox Activate!             | PlayState
+  153066 Dank%                              | PlayState, Player actor
+  153071 Dive Dive Dive!                    | PlayState
+  153072 Dampe Time Paradox                 | PlayState
+  153073 New Boot Goofin                    | PlayState
+  153077 Graverobbing                       | PlayState
+  153076 37th Heart Piece                   | PlayState
+  153049 Door of Time Skip                  | PlayState
+  153329 Adult Door of Time Skip            | PlayState, Player actor
+  153052 HP Over Dodongo                    | PlayState
+  153048 Breaking and Entering              | PlayState, Player actor
+  153050 Steal Epona                        | Other, PlayState
+  153055 Unfreeze the King                  | PlayState, Player actor
+  153056 Wait How?                          | Actor heap (dynamic), PlayState, Player actor
+  153057 Legend of Zelda: Epona of Time and | Actor heap (dynamic), PlayState
+  153058 Trials?                            | PlayState
+  153059 I Need to Ask Chu a Question       | Actor heap (dynamic), Other, PlayState, Player actor
+  153061 Gatekeeping                        | PlayState
+  153062 This Isn't a Randomizer?           | PlayState, Player actor
+  153065 Ice Ice Baby                       | PlayState
+  153067 Frozen in Time                     | PlayState
+  153068 Under the Ice                      | PlayState
+  153069 Be Like Water                      | PlayState
+  153070 Bullseye!                          | Other, PlayState, Player actor
+  153075 Just Walk Right Up To It           | PlayState
+  153083 The Bottle is Mightier Than the Sw | save only
+  153078 Theater Skull                      | PlayState
+  153074 What a Horrible Night for a Curse  | save only
+  153051 No Rainbow Bridge                  | PlayState
+  540880 I Ain't Afraid of No Ghost         | PlayState
+  540881 The Biggerest Quiver               | PlayState, Player actor
+  540882 Ass Chest                          | PlayState
+  540883 Mr. Zfg1's Wild Ride               | PlayState
