@@ -59,7 +59,7 @@ Next steps for the PoC:
 
 1. Play-test in SoH and record a few unlocks.
 2. Tier 3: Link's actor fields, plus the animation table. The map has the asset symbols needed.
-3. Windows: WinHTTP backend for `RAHttp`.
+3. ~~Windows: WinHTTP backend for `RAHttp`.~~ Done.
 
 ## Goal
 
