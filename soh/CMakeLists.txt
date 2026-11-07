@@ -717,6 +717,48 @@ endif()
 find_package(libzip REQUIRED)
 list(APPEND ADDITIONAL_LIBRARY_DEPENDENCIES libzip::zip)
 
+################################################################################
+# RetroAchievements (proof of concept)
+################################################################################
+option(ENABLE_RETROACHIEVEMENTS "Build RetroAchievements support (rcheevos)" OFF)
+if(ENABLE_RETROACHIEVEMENTS)
+    FetchContent_Declare(
+            rcheevos
+            GIT_REPOSITORY https://github.com/RetroAchievements/rcheevos.git
+            GIT_TAG v12.5.0
+    )
+    FetchContent_MakeAvailable(rcheevos)
+
+    # rcheevos ships no CMakeLists.txt. Of rhash only md5.c is needed (the
+    # runtime uses it internally); ROM hashing, rc_libretro and the
+    # RAIntegration loader aren't: SoH identifies the game itself and
+    # RAIntegration is Windows-only.
+    file(GLOB rcheevos__ CONFIGURE_DEPENDS
+        "${rcheevos_SOURCE_DIR}/src/*.c"
+        "${rcheevos_SOURCE_DIR}/src/rapi/*.c"
+        "${rcheevos_SOURCE_DIR}/src/rcheevos/*.c"
+        "${rcheevos_SOURCE_DIR}/src/rhash/md5.c"
+    )
+    list(FILTER rcheevos__ EXCLUDE REGEX "rc_libretro\\.c$|rc_client_raintegration\\.c$")
+    add_library(rcheevos STATIC ${rcheevos__})
+    target_include_directories(rcheevos PUBLIC "${rcheevos_SOURCE_DIR}/include")
+    set_target_properties(rcheevos PROPERTIES C_STANDARD 99)
+    # StormLib (via libultraship) also defines md5_init, with a different
+    # struct. Rename rcheevos' copy so neither links against the other's.
+    target_compile_definitions(rcheevos PRIVATE
+        md5_init=rc_md5_init
+        md5_append=rc_md5_append
+        md5_finish=rc_md5_finish
+    )
+
+    if(NOT WIN32)
+        find_package(CURL REQUIRED)
+        list(APPEND ADDITIONAL_LIBRARY_DEPENDENCIES CURL::libcurl)
+    endif()
+    list(APPEND ADDITIONAL_LIBRARY_DEPENDENCIES rcheevos)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE ENABLE_RETROACHIEVEMENTS)
+endif()
+
 if(USE_ASAN)
     target_compile_options(libultraship PRIVATE -fsanitize=address)
     target_link_options(libultraship PRIVATE -fsanitize=address)
