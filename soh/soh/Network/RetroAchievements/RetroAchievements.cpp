@@ -243,8 +243,8 @@ void LoadGame() {
         sRomStatus.clear();
         return;
     }
-    sRomStatus = std::string(rom->name) +
-                 (rom->match == RomMatch::Exact ? " (exact match)" : " (mapped to the NTSC 1.0 set)");
+    sRomStatus =
+        std::string(rom->name) + (rom->match == RomMatch::Exact ? " (exact match)" : " (mapped to the NTSC 1.0 set)");
     SPDLOG_INFO("[RetroAchievements] Using {}", sRomStatus);
     sBusy = true;
     sStatus = "Loading achievements...";
@@ -299,8 +299,8 @@ void CreateClient() {
     const char* os = "Linux";
 #endif
     RAHttp::SetUserAgent(std::string("ShipOfHarkinian/") + std::to_string(gBuildVersionMajor) + "." +
-                         std::to_string(gBuildVersionMinor) + "." + std::to_string(gBuildVersionPatch) + " (" +
-                         os + ") " + clause);
+                         std::to_string(gBuildVersionMinor) + "." + std::to_string(gBuildVersionPatch) + " (" + os +
+                         ") " + clause);
 }
 
 void LoginWithPassword(const std::string& username, const std::string& password) {

@@ -22,8 +22,7 @@ using Callback = std::function<void(const Response&)>;
 void SetUserAgent(const std::string& userAgent);
 
 // POSTs `postData` to `url` (or GETs when postData is empty)
-void Request(const std::string& url, const std::string& postData, const std::string& contentType,
-             Callback callback);
+void Request(const std::string& url, const std::string& postData, const std::string& contentType, Callback callback);
 
 // Runs callbacks for finished requests. Call from the game thread.
 void DispatchCompleted();

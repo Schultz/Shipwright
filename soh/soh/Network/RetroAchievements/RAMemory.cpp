@@ -255,9 +255,9 @@ void PutPlayState() {
     const uint32_t p = N64_PLAY_STATE;
     const PlayState* play = gPlayState;
 
-    Put<uint32_t>(p + 0x0009C, play ? play->state.frames : 0);         // RA 0x1C853C, scene timer
-    Put<int16_t>(p + 0x000A4, play ? play->sceneNum : 0);              // RA 0x1C8546
-    Put<uint8_t>(p + 0x01C27, play ? play->actorCtx.lensActive : 0);   // RA 0x1CA0C4
+    Put<uint32_t>(p + 0x0009C, play ? play->state.frames : 0);       // RA 0x1C853C, scene timer
+    Put<int16_t>(p + 0x000A4, play ? play->sceneNum : 0);            // RA 0x1C8546
+    Put<uint8_t>(p + 0x01C27, play ? play->actorCtx.lensActive : 0); // RA 0x1CA0C4
 
     // Current scene's flags (switch, chest, clear, collect), RA 0x1CA1C8...
     const uint32_t flags = p + 0x01C24 + 0x104;
@@ -270,9 +270,9 @@ void PutPlayState() {
     Put<uint32_t>(flags + 0x18, play ? play->actorCtx.flags.tempClear : 0);
     Put<uint32_t>(flags + 0x1C, play ? play->actorCtx.flags.collect : 0);
     Put<uint32_t>(flags + 0x20, play ? play->actorCtx.flags.tempCollect : 0);
-    Put<uint16_t>(p + 0x103D0, play ? play->msgCtx.textId : 0);        // RA 0x1D8872
-    Put<int8_t>(p + 0x11E5C, play ? play->shootingGalleryStatus : 0);  // RA 0x1DA2FF
-    Put<int8_t>(p + 0x11E5D, play ? play->bombchuBowlingStatus : 0);   // RA 0x1DA2FE
+    Put<uint16_t>(p + 0x103D0, play ? play->msgCtx.textId : 0);       // RA 0x1D8872
+    Put<int8_t>(p + 0x11E5C, play ? play->shootingGalleryStatus : 0); // RA 0x1DA2FF
+    Put<int8_t>(p + 0x11E5D, play ? play->bombchuBowlingStatus : 0);  // RA 0x1DA2FE
 }
 
 // Globals outside SaveContext and PlayState. Addresses come from the

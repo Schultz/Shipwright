@@ -47,9 +47,9 @@ std::shared_ptr<Fast::Fast3dGui> GetGui() {
 // load their textures, so the upload doesn't land in the middle of the game's frame.
 void UploadBadge(Badge& badge) {
     int width = 0, height = 0, channels = 0;
-    uint8_t* pixels = stbi_load_from_memory(reinterpret_cast<const stbi_uc*>(badge.png.data()),
-                                            static_cast<int>(badge.png.size()), &width, &height, &channels,
-                                            STBI_rgb_alpha);
+    uint8_t* pixels =
+        stbi_load_from_memory(reinterpret_cast<const stbi_uc*>(badge.png.data()), static_cast<int>(badge.png.size()),
+                              &width, &height, &channels, STBI_rgb_alpha);
     badge.png.clear();
     badge.png.shrink_to_fit();
     if (pixels == nullptr) {
