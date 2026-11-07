@@ -9,7 +9,7 @@
 // from SoH's live state. See RA/INTEGRATION_PLAN.md at the repo root.
 namespace RetroAchievements {
 
-// Draws the Network > RetroAchievements menu page
+// Draws the Settings > RetroAchievements menu page
 void DrawMenu();
 
 } // namespace RetroAchievements

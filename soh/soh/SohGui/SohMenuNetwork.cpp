@@ -7,7 +7,6 @@
 #include "soh/util.h"
 #include <soh/Network/Sail/Sail.h>
 #include <soh/Network/CrowdControl/CrowdControl.h>
-#include <soh/Network/RetroAchievements/RetroAchievements.h>
 #include "soh/SohGui/UIWidgets.hpp"
 
 namespace SohGui {
@@ -174,14 +173,6 @@ void SohMenu::AddMenuNetwork() {
                                            "rooms\", so they don't need to be killed to complete these rooms."));
     path.sidebarName = "Anchor";
     AddSidebarEntry("Network", path.sidebarName, 2);
-
-#ifdef ENABLE_RETROACHIEVEMENTS
-    path = { "Network", "RetroAchievements", SECTION_COLUMN_1 };
-    AddSidebarEntry("Network", path.sidebarName, 1);
-    AddWidget(path, "RetroAchievements", WIDGET_CUSTOM).CustomFunction([](WidgetInfo& info) {
-        RetroAchievements::DrawMenu();
-    });
-#endif
 }
 
 } // namespace SohGui

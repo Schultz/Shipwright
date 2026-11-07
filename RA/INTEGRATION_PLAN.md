@@ -16,7 +16,7 @@ Code, all behind `-DENABLE_RETROACHIEVEMENTS=ON` (default OFF):
 | `soh/soh/Network/RetroAchievements/RAPopup.cpp` | Trophy-style popup at the top right: RA badge image, headline, title, description, points, chime. Badges are prefetched at set load, decoded with stb_image and uploaded through `Fast3dGui::LoadTextureFromResource`. The `GuiTexture` must be built with `ResourceInitData`, because `~IResource` logs `InitData->Path` and crashes on a default-constructed one |
 | `soh/soh/Network/RetroAchievements/RAHttp.cpp` | libcurl worker thread. Responses run on the game thread |
 | `soh/soh/Network/RetroAchievements/RetroAchievements.cpp` | rc_client setup, token login, game load by hash, per-frame `rc_client_do_frame` from `OnGameFrameUpdate`, unlock popups, menu page, replay mode (rcheevos encore mode, `gRemote.RetroAchievements.Encore`), test mode (rcheevos spectator mode, `gRemote.RetroAchievements.TestMode`: achievements trigger locally, no session, unlock, leaderboard or ping request is sent) |
-| `soh/soh/SohGui/SohMenuNetwork.cpp` | Network > RetroAchievements page |
+| `soh/soh/SohGui/SohMenuSettings.cpp` | Settings > RetroAchievements page |
 | `soh/CMakeLists.txt` | rcheevos v12.5.0 through FetchContent, built as a static lib. System libcurl |
 
 Findings from building it:

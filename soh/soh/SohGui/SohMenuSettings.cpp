@@ -6,6 +6,7 @@
 #include <soh/GameVersions.h>
 #include "soh/ResourceManagerHelpers.h"
 #include "UIWidgets.hpp"
+#include "soh/Network/RetroAchievements/RetroAchievements.h"
 #include <ship/controller/controldeck/ControlDeck.h>
 #include <ship/Context.h>
 
@@ -540,6 +541,16 @@ void SohMenu::AddMenuSettings() {
         .WindowName("Mod Menu")
         .HideInSearch(true)
         .Options(WindowButtonOptions().Tooltip("Enables the separate Mod Menu Window."));
+
+#ifdef ENABLE_RETROACHIEVEMENTS
+    // RetroAchievements
+    path.sidebarName = "RetroAchievements";
+    path.column = SECTION_COLUMN_1;
+    AddSidebarEntry("Settings", path.sidebarName, 1);
+    AddWidget(path, "RetroAchievements", WIDGET_CUSTOM).CustomFunction([](WidgetInfo& info) {
+        RetroAchievements::DrawMenu();
+    });
+#endif
 }
 
 } // namespace SohGui
