@@ -5085,6 +5085,20 @@ const char* digitTextures[] = { gCounterDigit0Tex, gCounterDigit1Tex, gCounterDi
                                 gCounterDigit2Tex, gCounterDigit3Tex, gCounterDigit4Tex, gCounterDigit5Tex,
                                 gCounterDigit6Tex, gCounterDigit7Tex, gCounterDigit8Tex };
 
+// SoH [RetroAchievements] Moved out of Interface_Draw, where they were function-local statics, so the
+// RetroAchievements memory view can read them. On N64 NTSC 1.0 they sit at 0x8011BF20-0x8011BF27.
+static s16 sTimerNextSecondTimer;
+static s16 sTimerStateTimer;
+static s16 sSubTimerNextSecondTimer;
+static s16 sSubTimerStateTimer;
+
+void Interface_GetTimerCounters(s16* timerNextSecond, s16* timerState, s16* subTimerNextSecond, s16* subTimerState) {
+    *timerNextSecond = sTimerNextSecondTimer;
+    *timerState = sTimerStateTimer;
+    *subTimerNextSecond = sSubTimerNextSecondTimer;
+    *subTimerState = sSubTimerStateTimer;
+}
+
 void Interface_Draw(PlayState* play) {
     static s16 magicArrowEffectsR[] = { 255, 100, 255 };
     static s16 magicArrowEffectsG[] = { 0, 100, 255 };
@@ -5127,10 +5141,6 @@ void Interface_Draw(PlayState* play) {
     static s16 spoilingItemEntrances[] = { ENTR_LOST_WOODS_2, ENTR_ZORAS_DOMAIN_3, ENTR_ZORAS_DOMAIN_3 };
     static f32 D_80125B54[] = { -40.0f, -35.0f }; // unused
     static s16 D_80125B5C[] = { 91, 91 };         // unused
-    static s16 sTimerNextSecondTimer;
-    static s16 sTimerStateTimer;
-    static s16 sSubTimerNextSecondTimer;
-    static s16 sSubTimerStateTimer;
     static s16 timerDigits[5];
     InterfaceContext* interfaceCtx = &play->interfaceCtx;
     PauseContext* pauseCtx = &play->pauseCtx;
